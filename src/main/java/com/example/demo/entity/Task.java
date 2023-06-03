@@ -1,9 +1,8 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Task {
@@ -14,6 +13,10 @@ public class Task {
     private String name;
 
     private Status status;
+
+    @ManyToOne
+    @JsonIgnore
+    private Employee employee;
 
     public Task() {
     }
@@ -45,5 +48,27 @@ public class Task {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Employee getEmployeer() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", employee=" + employee +
+                '}';
     }
 }

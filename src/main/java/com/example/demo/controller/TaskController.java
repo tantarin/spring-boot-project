@@ -19,14 +19,25 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @PostMapping
+    public void addTask(@RequestBody Task task) {
+        System.out.println(task);
+        taskService.addTask(task);
+    }
+
     @GetMapping
     public List<Task> getAll() {
         return taskService.getAll();
     }
 
-    @PostMapping
-    public void addTask(@RequestBody Task task) {
-        taskService.addTask(task);
+    @GetMapping("/{id}")
+    public Task getById(@PathVariable Long id) {
+        return taskService.getById(id);
+    }
+
+    @PutMapping
+    public void update(@RequestBody Task task) {
+        taskService.update(task);
     }
 
     @DeleteMapping("/{id}")
@@ -34,15 +45,9 @@ public class TaskController {
         taskService.deleteById(id);
     }
 
-
-    //    @GetMapping("/{name}")
-//    public Task getByName(@PathVariable String name) {
-//        return taskService.getByName(name);
-//    }
-//
-//    @GetMapping
-//    public List<Task> getByStatus(@RequestParam Status status) {
-//        return taskService.getByStatus(status);
-//    }
+    @DeleteMapping()
+    public void deleteAll() {
+        taskService.deleteAll();
+    }
 
 }
