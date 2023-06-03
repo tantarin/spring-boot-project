@@ -50,10 +50,6 @@ public class Task {
         this.id = id;
     }
 
-    public Employee getEmployeer() {
-        return employee;
-    }
-
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
